@@ -1,4 +1,5 @@
 import { CopilotBackend, LangChainAdapter, OpenAIAdapter } from "@copilotkit/backend";
+import { AgentExecutor, createStructuredChatAgent } from "langchain/agents";
 import { ChatCloudflareWorkersAI } from "@langchain/cloudflare";
 import { researchWithLangGraph } from "./research";
 import { Action } from "@copilotkit/shared";
@@ -38,20 +39,33 @@ export async function POST(req: Request): Promise<Response> {
   //   new OpenAIAdapter({ model: langchainModel })
   // );
 
+  const llm = new ChatCloudflareWorkersAI({
+    model: langchainModel, // "@cf/meta/llama-2-7b-chat-int8",
+    cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
+    cloudflareApiToken: process.env.CLOUDFLARE_API_TOKEN,
+    // Pass a custom base URL to use Cloudflare AI Gateway
+    // baseUrl: `https://gateway.ai.cloudflare.com/v1/{process.env["CLOUDFLARE_ACCOUNT_ID"]}/{GATEWAY_NAME}/workers-ai/`,
+  });
+
   return copilotKit.response(
     req,
     new LangChainAdapter(async (forwardedProps) => {
-      const model = new ChatCloudflareWorkersAI({
-        model: langchainModel, // "@cf/meta/llama-2-7b-chat-int8",
-        cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
-        cloudflareApiToken: process.env.CLOUDFLARE_API_TOKEN,
-        // Pass a custom base URL to use Cloudflare AI Gateway
-        // baseUrl: `https://gateway.ai.cloudflare.com/v1/{process.env["CLOUDFLARE_ACCOUNT_ID"]}/{GATEWAY_NAME}/workers-ai/`,
+      const agent = await createStructuredChatAgent({
+        llm,
+        tools: forwardedProps.tools,
+        prompt: forwardedProps.messages,
       });
+    
+      const model = new AgentExecutor({
+        agent,
+        tools: forwardedProps.tools,
+      });
+
       // const model = new ChatOpenAI(
       //   { modelName: "gpt-4-1106-preview" }
       // );
-      return model.stream(
+      // console.log("Forwarded props:", forwardedProps);
+      const returnVal = await model.stream(
         forwardedProps.messages,
         // [
         //   ["system", "You are a helpful assistant that translates English to German."],
@@ -62,6 +76,8 @@ export async function POST(req: Request): Promise<Response> {
       //   forwardedProps.messages, 
       //   { tools: forwardedProps.tools }
       // );
+      console.log("Return value:", returnVal);
+      return returnVal;
     }),
   );
   
