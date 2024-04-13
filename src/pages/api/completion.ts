@@ -29,7 +29,7 @@ export default async function handler(
     return new Response("Missing messages", { status: 400 });
   }
 
-  const token = process.env["CLOUDFLARE_API_TOKEN"];// req.headers.get("Authorization")?.split(" ")[1];
+  const token = process.env["CLOUDFLARE_API_TOKEN"] || ''; // Ensure token is a string
   /*if (!token) {
     return new Response("Missing token", { status: 401 });
   }*/
@@ -43,6 +43,10 @@ export default async function handler(
   };
 
   try {
+    // Check if token is not an empty string before calling the function
+    if (token === '') {
+      throw new Error('Missing Cloudflare API token');
+    }
     const stream = await getCloudflareCompletion(token, payload);
     return new Response(stream);
   } catch (e: any) {
