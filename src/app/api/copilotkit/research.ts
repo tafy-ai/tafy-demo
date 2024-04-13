@@ -4,7 +4,8 @@
  * https://github.com/assafelovic/gpt-newspaper
  */
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
-import { ChatOpenAI } from "@langchain/openai";
+// import { ChatOpenAI } from "@langchain/openai";
+import { ChatCloudflareWorkersAI } from "@langchain/cloudflare";
 import { StateGraph, END } from "@langchain/langgraph";
 import { RunnableLambda } from "@langchain/core/runnables";
 import { TavilySearchAPIRetriever } from "@langchain/community/retrievers/tavily_search_api";
@@ -17,9 +18,14 @@ interface AgentState {
 }
 
 function model() {
-  return new ChatOpenAI({
-    temperature: 0,
-    modelName: "gpt-3.5-turbo-0125",
+  // return new ChatOpenAI({
+  //   temperature: 0,
+  //   modelName: "gpt-3.5-turbo-0125",
+  // });
+  return new ChatCloudflareWorkersAI({
+    model: "@cf/meta/llama-2-7b-chat-int8",
+    cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
+    cloudflareApiToken: process.env.CLOUDFLARE_API_TOKEN
   });
 }
 
