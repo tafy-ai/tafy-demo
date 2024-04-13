@@ -46,7 +46,7 @@ export async function POST(req: Request): Promise<Response> {
         cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
         cloudflareApiToken: process.env.CLOUDFLARE_API_TOKEN,
         // Pass a custom base URL to use Cloudflare AI Gateway
-        // baseUrl: `https://gateway.ai.cloudflare.com/v1/{YOUR_ACCOUNT_ID}/{GATEWAY_NAME}/workers-ai/`,
+        // baseUrl: `https://gateway.ai.cloudflare.com/v1/{process.env["CLOUDFLARE_ACCOUNT_ID"]}/{GATEWAY_NAME}/workers-ai/`,
       });
       // const model = new ChatOpenAI(
       //   { modelName: "gpt-4-1106-preview" }

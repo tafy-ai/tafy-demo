@@ -23,9 +23,9 @@ function model() {
   //   modelName: "gpt-3.5-turbo-0125",
   // });
   return new ChatCloudflareWorkersAI({
-    model: "@cf/meta/llama-2-7b-chat-int8",
+    model: process.env["CLOUDFLARE_AI_MODEL"], // "@cf/meta/llama-2-7b-chat-int8",
     cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
-    cloudflareApiToken: process.env.CLOUDFLARE_API_TOKEN
+    cloudflareApiToken: process.env.CLOUDFLARE_API_TOKEN,
   });
 }
 
@@ -74,11 +74,11 @@ async function curate(state: {
        ${state.agentState.searchResults}`.replace(/\s+/g, " ")
       ),
     ],
-    {
-      response_format: {
-        type: "json_object",
-      },
-    }
+    // {
+    //   response_format: {
+    //     type: "json_object",
+    //   },
+    // }
   );
   const urls = JSON.parse(response.content as string).urls;
   const searchResults = JSON.parse(state.agentState.searchResults!);
