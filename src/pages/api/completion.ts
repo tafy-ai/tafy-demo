@@ -29,7 +29,7 @@ export default async function handler(
     return new Response("Missing messages", { status: 400 });
   }
 
-  const token = "test";// req.headers.get("Authorization")?.split(" ")[1];
+  const token = process.env["CLOUDFLARE_API_TOKEN"];// req.headers.get("Authorization")?.split(" ")[1];
   /*if (!token) {
     return new Response("Missing token", { status: 401 });
   }*/

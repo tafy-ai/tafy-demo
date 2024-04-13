@@ -20,7 +20,7 @@ export const getCloudflareCompletion = async (
   const decoder = new TextDecoder();
 
   const account_id = process.env.CLOUDFLARE_ACCOUNT_ID;
-  const api_key = process.env.CLOUDFLARE_API_KEY
+  const api_key = process.env.CLOUDFLARE_API_TOKEN;
   
   const json = JSON.stringify({messages:  payload.messages, stream: true});
 
