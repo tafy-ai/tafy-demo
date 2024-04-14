@@ -206,6 +206,7 @@ const agentState = {
 // Define the function that determines whether to continue or not
 const shouldContinue = (state: { agentState: AgentState }) => {
   const result = state.agentState.critique === undefined ? "end" : "continue";
+  console.log("should continue:", result);
   return result;
 };
 
@@ -255,6 +256,7 @@ export async function researchWithLangGraph(topic: string) {
       topic,
     },
   };
+  console.log("researching topic:", topic);
   const result = await app.invoke(inputs);
   const regex = /<FEEDBACK>[\s\S]*?<\/FEEDBACK>/g;
   const article = result.agentState.article.replace(regex, "");
