@@ -14,6 +14,7 @@ export const PerformResearchSwitch = ({
       <div className="relative">
         <input
           type="checkbox"
+          disabled={true}
           className="sr-only"
           checked={isEnabled}
           onChange={() => setIsEnabled((b) => !b)}

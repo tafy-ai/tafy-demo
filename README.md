@@ -1,4 +1,4 @@
-This is a demo of Tafy, a generative AI recipe design and meal planning service
+This is a demo of Tafy, a generative AI meal planning and recipe generation service
 
 ## Getting Started
 
@@ -33,3 +33,14 @@ To learn more about Tafy, take a look at the following resources:
 - [Tafy Signup (WIP)](https://tafy.io) - The home of what will become of the meal planning
   web application if it gathers enough interest.
 - [GitHub](https://github.com/tafy-io) - Check out the Tafy organization GitHub repository.
+
+### Credits
+
+- Thanks to the folks at CopilotKit for their awesome support and really awesome
+  demo that formed the foundation for this demo!
+- Additional thanks to the other Cloudflare/dev.to contestants for helping me get passed my
+  issues.
+- Thanks to Cloudflare and Dev.to for the contest!  This has been fun and I'm
+  hoping to build a real product from this using Cloudflare's architecture.
+
+

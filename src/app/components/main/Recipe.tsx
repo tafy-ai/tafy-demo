@@ -1,7 +1,8 @@
 "use client";
 
-import { useCopilotAction } from "@copilotkit/react-core";
 import useUpdateRecipe from "../../actions/useUpdateRecipe";
+// import useUpdatePicture from "../../actions/useUpdatePicture";
+import { getBackgroundImage } from "../../utils/getBackgroundImage";
 import { RecipeModel } from "@/app/types";
 
 export interface RecipeProps {
@@ -10,10 +11,10 @@ export interface RecipeProps {
 }
 
 export const Recipe = (props: RecipeProps) => {
-  const backgroundImage =
-    'url("https://source.unsplash.com/featured/?' +
-    encodeURIComponent(props.recipe.backgroundImageDescription) +
-    '")';
+  const backgroundImage = getBackgroundImage(props.recipe.backgroundImageDescription);
+    // 'url("https://source.unsplash.com/featured/?' +
+    // encodeURIComponent(props.recipe.backgroundImageDescription) +
+    // '")';
 
   /**
    * This action allows the Copilot to update the current recipe.
@@ -21,8 +22,8 @@ export const Recipe = (props: RecipeProps) => {
   useUpdateRecipe({ partialUpdateRecipe: props.partialUpdateRecipe });
 
   return (
-    <div className="w-full h-full flex flex-row bg-white">
-      <div className="flex-grow h-full flex flex-col" style={{flex: "2"}}>
+    <div className="w-full h-full v-full flex flex-row bg-white">
+      <div className="flex-grow h-full v-full flex flex-col" style={{flex: "2"}}>
         <RecipeContent
           content={props.recipe.content}
           onChange={(newContent) => {
