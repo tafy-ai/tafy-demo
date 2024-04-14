@@ -18,14 +18,17 @@ interface AgentState {
 }
 
 function model() {
-  // return new ChatOpenAI({
-  //   temperature: 0,
-  //   modelName: "gpt-3.5-turbo-0125",
-  // });
+  const langchainModel = process.env["CLOUDFLARE_AI_MODEL"];
   return new ChatCloudflareWorkersAI({
-    model: process.env["CLOUDFLARE_AI_MODEL"], // "@cf/meta/llama-2-7b-chat-int8",
+    model: langchainModel,
     cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
     cloudflareApiToken: process.env.CLOUDFLARE_API_TOKEN,
+    // Pass a custom base URL to use Cloudflare AI Gateway,
+    //  see this to set it up:
+    //  https://developers.cloudflare.com/ai-gateway/get-started/creating-gateway/
+
+    // baseUrl: `https://gateway.ai.cloudflare.com/v1/ACCOUNT_TAG/GATEWAY/workers-ai/`,
+    baseUrl: `https://gateway.ai.cloudflare.com/v1/${process.env['CLOUDFLARE_ACCOUNT_ID']}/tafy-demo/workers-ai/`
   });
 }
 
@@ -58,7 +61,7 @@ async function curate(state: {
   const response = await model().invoke(
     [
       new SystemMessage(
-        `You are a personal newspaper editor. 
+        `You are a professional editor for several prominent food blogs. 
          Your sole task is to return a list of URLs of the 5 most relevant articles for the provided topic or query as a JSON list of strings
          in this format:
          {
@@ -108,7 +111,7 @@ async function critique(state: {
   }
   const response = await model().invoke([
     new SystemMessage(
-      `You are a personal newspaper writing critique. Your sole purpose is to provide short feedback on a written 
+      `You are a personal recipe article writing critique. Your sole purpose is to provide short feedback on a written 
       article so the writer will know what to fix.       
       Today's date is ${new Date().toLocaleDateString("en-GB")}
       Your task is to provide a really short feedback on the article only if necessary.
@@ -138,15 +141,15 @@ async function write(state: {
   console.log("writing article");
   const response = await model().invoke([
     new SystemMessage(
-      `You are a personal newspaper writer. Your sole purpose is to write a well-written article about a 
-      topic using a list of articles. Write 5 paragraphs in markdown.`.replace(
+      `You are a professional food blogger. Your sole purpose is to write a well-written article about a 
+      food-related topic using a list of articles. Write 5 paragraphs in markdown.`.replace(
         /\s+/g,
         " "
       )
     ),
     new HumanMessage(
       `Today's date is ${new Date().toLocaleDateString("en-GB")}.
-      Your task is to write a critically acclaimed article for me about the provided query or 
+      Your task is to write a critically acclaimed food article for me about the provided query or 
       topic based on the sources. 
       Here is a list of articles: ${state.agentState.searchResults}
       This is the topic: ${state.agentState.topic}
@@ -172,8 +175,8 @@ async function revise(state: {
   console.log("revising article");
   const response = await model().invoke([
     new SystemMessage(
-      `You are a personal newspaper editor. Your sole purpose is to edit a well-written article about a 
-      topic based on given critique.`.replace(/\s+/g, " ")
+      `You are a professional food blog editor. Your sole purpose is to edit a well-written article about a 
+      food-related topic based on given critique.`.replace(/\s+/g, " ")
     ),
     new HumanMessage(
       `Your task is to edit the article based on the critique given.

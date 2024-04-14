@@ -1,40 +1,40 @@
 import clsx from "clsx";
-import { SlideModel } from "@/app/types";
+import { RecipeModel } from "@/app/types";
 import { useMemo } from "react";
 import { useCopilotContext } from "@copilotkit/react-core";
-import { SlideNumberIndicator } from "../misc/SlideNumberIndicator";
-import { GenerateSlideButton } from "../buttons/GenerateSlideButton";
-import { SpeakCurrentSlideButton } from "../buttons/SpeakCurrentSlideButton";
-import { DeleteSlideButton } from "../buttons/DeleteSlideButton";
+import { RecipeNumberIndicator } from "../misc/RecipeNumberIndicator";
+import { GenerateRecipeButton } from "../buttons/GenerateRecipeButton";
+import { SpeakCurrentRecipeButton } from "../buttons/SpeakCurrentRecipeButton";
+import { DeleteRecipeButton } from "../buttons/DeleteRecipeButton";
 import { NavButton } from "../buttons/NavButton";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { PerformResearchSwitch } from "../buttons/PerformResearchSwitch";
-import { AddSlideButton } from "../buttons/AddSlideButton";
+import { AddRecipeButton } from "../buttons/AddRecipeButton";
 
 interface HeaderProps {
-  currentSlideIndex: number;
-  setCurrentSlideIndex: (fn: (i: number) => number) => void;
-  slides: SlideModel[];
-  setSlides: (fn: (slides: SlideModel[]) => SlideModel[]) => void;
+  currentRecipeIndex: number;
+  setCurrentRecipeIndex: (fn: (i: number) => number) => void;
+  recipes: RecipeModel[];
+  setRecipes: (fn: (recipes: RecipeModel[]) => RecipeModel[]) => void;
   performResearch: boolean;
   setPerformResearch: (fn: (b: boolean) => boolean) => void;
 }
 
 export function Header({
-  currentSlideIndex,
-  setCurrentSlideIndex,
-  slides,
-  setSlides,
+  currentRecipeIndex,
+  setCurrentRecipeIndex,
+  recipes,
+  setRecipes,
   performResearch,
   setPerformResearch,
 }: HeaderProps) {
-  const currentSlide = useMemo(
-    () => slides[currentSlideIndex],
-    [slides, currentSlideIndex]
+  const currentRecipe = useMemo(
+    () => recipes[currentRecipeIndex],
+    [recipes, currentRecipeIndex]
   );
 
   /**
-   * We need to get the context here to run a Copilot task for generating a slide
+   * We need to get the context here to run a Copilot task for generating a recipe
    **/
   const context = useCopilotContext();
 
@@ -43,16 +43,16 @@ export function Header({
       <div className="flex-0 flex space-x-1">
         {/* Back */}
         <NavButton
-          disabled={currentSlideIndex == 0}
-          onClick={() => setCurrentSlideIndex((i) => i - 1)}
+          disabled={currentRecipeIndex == 0}
+          onClick={() => setCurrentRecipeIndex((i) => i - 1)}
         >
           <ChevronLeftIcon className="h-6 w-6" />
         </NavButton>
 
         {/* Forward */}
         <NavButton
-          disabled={currentSlideIndex == slides.length - 1}
-          onClick={() => setCurrentSlideIndex((i) => i + 1)}
+          disabled={currentRecipeIndex == recipes.length - 1}
+          onClick={() => setCurrentRecipeIndex((i) => i + 1)}
         >
           <ChevronRightIcon className="h-6 w-6" />
         </NavButton>
@@ -64,23 +64,23 @@ export function Header({
         />
       </div>
 
-      <SlideNumberIndicator
-        {...{ currentSlideIndex, totalSlides: slides.length }}
+      <RecipeNumberIndicator
+        {...{ currentRecipeIndex, totalRecipes: recipes.length }}
       />
 
       <div className="flex-0 flex space-x-1">
-        <AddSlideButton
-          {...{ currentSlideIndex, setCurrentSlideIndex, setSlides }}
+        <AddRecipeButton
+          {...{ currentRecipeIndex, setCurrentRecipeIndex, setRecipes }}
         />
 
-        <GenerateSlideButton context={context} />
+        <GenerateRecipeButton context={context} />
 
-        <SpeakCurrentSlideButton
-          spokenNarration={currentSlide.spokenNarration}
+        <SpeakCurrentRecipeButton
+          spokenNarration={currentRecipe.spokenNarration}
         />
 
-        <DeleteSlideButton
-          {...{ currentSlideIndex, setCurrentSlideIndex, slides, setSlides }}
+        <DeleteRecipeButton
+          {...{ currentRecipeIndex, setCurrentRecipeIndex, recipes, setRecipes }}
         />
       </div>
     </header>
