@@ -1,7 +1,5 @@
 import { CopilotBackend, LangChainAdapter, OpenAIAdapter } from "@copilotkit/backend";
-// import { AgentExecutor, createStructuredChatAgent } from "langchain/agents";
 import { ChatCloudflareWorkersAI } from "@langchain/cloudflare";
-// import { ChatMistralAI } from "@langchain/mistralai";
 import { researchWithLangGraph } from "./research";
 import { Action } from "@copilotkit/shared";
 
@@ -33,7 +31,7 @@ export async function POST(req: Request): Promise<Response> {
     actions: actions,
   });
 
-  // This only works with tool-calling models
+  // NOTE: This only works with tool-calling models
   if (process.env["USE_CLOUDFLARE_AI"] === "yes") {
     const langchainModel = process.env["CLOUDFLARE_AI_MODEL"];
 
@@ -55,7 +53,7 @@ export async function POST(req: Request): Promise<Response> {
 
         return llm.stream(
           forwardedProps.messages,
-          { tools: forwardedProps.tools } // Models aren't currently capable of using tools in Cloudflare Workers AI
+          { tools: forwardedProps.tools }
         );
       }),
     );
