@@ -28,6 +28,7 @@ export async function POST(req: Request): Promise<Response> {
   if (process.env["TAVILY_API_KEY"]) {
     actions.push(researchAction);
   }
+  console.log("Actions:", actions);
   const copilotKit = new CopilotBackend({
     actions: actions,
   });
