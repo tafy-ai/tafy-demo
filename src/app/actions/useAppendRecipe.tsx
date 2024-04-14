@@ -21,7 +21,7 @@ export default function useAppendRecipe({
       {
         name: "content",
         description:
-          "The content of the recipe. MUST consist of a title, then an empty newline, then a few bullet points. Always between 1-3 bullet points - no more, no less."
+          "The content of the recipe. MUST consist of a title, then an empty newline, then a list of ingredients, another empty newline, and instructions. Always in that format - no more, no less."
       },
       {
         name: "backgroundImageDescription",

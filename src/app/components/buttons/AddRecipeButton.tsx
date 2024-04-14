@@ -8,7 +8,7 @@ interface AddRecipeButtonProps {
   setRecipes: (fn: (recipes: RecipeModel[]) => RecipeModel[]) => void;
 }
 
-export function AddSlideButton({
+export function AddRecipeButton({
   currentRecipeIndex,
   setCurrentRecipeIndex,
   setRecipes,

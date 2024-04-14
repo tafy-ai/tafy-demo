@@ -14,7 +14,7 @@ export function DeleteRecipeButton({
   setCurrentRecipeIndex,
   recipes,
   setRecipes,
-}: DeleteRecipeButtonProps {) {
+}: DeleteRecipeButtonProps) {
   return (
     <ActionButton
       disabled={recipes.length == 1}

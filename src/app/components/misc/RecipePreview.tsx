@@ -9,7 +9,7 @@ export function RecipePreview({
   content,
   spokenNarration,
   done,
-}: RecipePreviewProps {) {
+}: RecipePreviewProps) {
   return (
     <div className="">
       <div className=" w-full relative max-w-xs">

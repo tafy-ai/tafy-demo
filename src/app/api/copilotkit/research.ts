@@ -148,11 +148,10 @@ async function write(state: {
       )
     ),
     new HumanMessage(
-      `Today's date is ${new Date().toLocaleDateString("en-GB")}.
-      Your task is to write a critically acclaimed food article for me about the provided query or 
-      topic based on the sources. 
-      Here is a list of articles: ${state.agentState.searchResults}
-      This is the topic: ${state.agentState.topic}
+      `Today's date is ${new Date().toLocaleDateString("en-US")}.
+      Your task is to write a critically acclaimed food article for me about the provided query or recipe based on the sources. 
+      Here is a list of articles: """${state.agentState.searchResults}"""
+      This is the topic: """${state.agentState.topic}"""
       Please return a well-written article based on the provided information.`.replace(
         /\s+/g,
         " "
@@ -175,13 +174,12 @@ async function revise(state: {
   console.log("revising article");
   const response = await model().invoke([
     new SystemMessage(
-      `You are a professional food blog editor. Your sole purpose is to edit a well-written article about a 
-      food-related topic based on given critique.`.replace(/\s+/g, " ")
+      `You are a professional food blog editor. Your sole purpose is to edit a well-written article about a food-related topic based on given critique.`.replace(/\s+/g, " ")
     ),
     new HumanMessage(
       `Your task is to edit the article based on the critique given.
-      This is the article: ${state.agentState.article}
-      This is the critique: ${state.agentState.critique}
+      This is the article: """${state.agentState.article}"""
+      This is the critique: """${state.agentState.critique}"""
       Please return the edited article based on the critique given.
       You may leave feedback about the critique encoded between <FEEDBACK> tags like this:
       <FEEDBACK> here goes the feedback ...</FEEDBACK>`.replace(/\s+/g, " ")

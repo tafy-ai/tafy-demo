@@ -41,6 +41,7 @@ export function Header({
   return (
     <header className={clsx("bg-customBlack text-white items-center flex p-4")}>
       <div className="flex-0 flex space-x-1">
+        
         {/* Back */}
         <NavButton
           disabled={currentRecipeIndex == 0}

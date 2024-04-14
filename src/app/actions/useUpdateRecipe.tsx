@@ -16,12 +16,12 @@ export default function useUpdateRecipe({
       {
         name: "content",
         description:
-          "The content of the recipe. Should generally consist of a few bullet points.",
+          "The content of the recipe should generally consist of a list of ingredients and a set of instructions.",
       },
       {
         name: "backgroundImageDescription",
         description:
-          "What to display in the background of the recipe. For example, 'lettuce', 'herbs', 'spices', etc.",
+          "What to display in the background of the recipe. For example, 'lettuce', 'herbs', 'spices', 'table', etc.",
       },
       {
         name: "spokenNarration",
