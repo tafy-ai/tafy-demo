@@ -1,6 +1,10 @@
 This is a demo of Tafy, a generative AI meal planning and recipe generation service.
 
-![Tafy Demo](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+===
+
+![Tafy Demo](https://github.com/tafy-io/tafy-demo/blob/a0163f16681a12cb3ca3ccc88fa1e591b9ef4063/TafyDemo-short.gif)
+
+===
 
 ## Getting Started
 
