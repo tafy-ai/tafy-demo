@@ -15,9 +15,9 @@ export async function GET(req: Request): Promise<Response> {
   console.log('Generating image for text:', text);
 
   // Load environment variable directly as it's supported by Workers
-  const baseUrl = process.env.APP_URL;
+  const baseUrl = process.env.WORKER_URL;
   if (!baseUrl) {
-    return new Response('Server configuration error: APP_URL is not defined.', { status: 500 });
+    return new Response('Server configuration error: WORKER_URL is not defined.', { status: 500 });
   }
 
   console.log('Using base URL:', baseUrl);
