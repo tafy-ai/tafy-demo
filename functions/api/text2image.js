@@ -18,7 +18,7 @@ export default {
         max_tokens: 100,
         temperature: 0.5,
       };
-      console.log('Inputs:', inputs);
+      // console.log('Inputs:', inputs);
 
       const response = await ai.run('@cf/stabilityai/stable-diffusion-xl-base-1.0', inputs);
 

@@ -1,45 +1,39 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log('Requesting image for text:', req.query.text);
+export const runtime = "edge";
 
-  if (req.method !== 'GET') {
-    res.setHeader('Allow', ['GET']);
-    res.status(405).end('Method Not Allowed');
-    return;
-  }
+// Edge API functions should be async and return a Response object
+export async function GET(req: Request): Promise<Response> {
+  console.log('Requesting image for text based on query:', new URL(req.url).searchParams.get('text'));
 
-  const text = req.query.text;
+  const url = new URL(req.url);
+  const text = url.searchParams.get("text");
 
-  if (!text || typeof text !== 'string') {
-    res.status(400).json({ error: 'Text parameter is required and must be a string.' });
-    return;
+  if (!text) {
+    return new Response("Text parameter is required and must be a string.", { status: 400 });
   }
 
   console.log('Generating image for text:', text);
 
-  // Ensure the environment variable is loaded properly
+  // Load environment variable directly as it's supported by Workers
   const baseUrl = process.env.APP_URL;
   if (!baseUrl) {
-    res.status(500).json({ error: 'Server configuration error: APP_URL is not defined.' });
-    return;
+    return new Response('Server configuration error: APP_URL is not defined.', { status: 500 });
   }
 
   console.log('Using base URL:', baseUrl);
-  
+
   try {
     const workerUrl = `${baseUrl}/api/text2image?text=${encodeURIComponent(text)}`;
-    const workerResponse = await fetch(workerUrl);
-
-    if (!workerResponse.ok) {
-      throw new Error(`Worker responded with status: ${workerResponse.status}`);
+    const response = await fetch(workerUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    const imageData = await response.arrayBuffer();
 
-    const imageData = await workerResponse.arrayBuffer();
-
-    res.setHeader('Content-Type', 'image/png');
-    res.status(200).send(Buffer.from(imageData));
+    return new Response(imageData, {
+      headers: { 'Content-Type': 'image/png' }
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message || 'Failed to process image.' });
+    return new Response(`Failed to process image: ${error.message}`, { status: 500 });
   }
 }
