@@ -1,5 +1,7 @@
 This is a demo of Tafy, a generative AI meal planning and recipe generation service.
 
+![Tafy Demo](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
 ## Getting Started
 
 ### 1. install the needed package:
