@@ -23,7 +23,7 @@ export async function GET(req: Request): Promise<Response> {
   console.log('Using base URL:', baseUrl);
 
   try {
-    const workerUrl = `${baseUrl}/api/text2image?text=${encodeURIComponent(text)}`;
+    const workerUrl = `${baseUrl}/text2image?text=${encodeURIComponent(text)}`;
     const response = await fetch(workerUrl);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
