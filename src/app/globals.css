@@ -29,7 +29,7 @@ body {
 
 .aspect-ratio-box {
   width: 100%;
-  max-width: calc(100% - 5rem); /* Account for margin */
+  max-width: calc(100% - 3rem); /* Account for margin */
   position: relative;
 }
 .aspect-ratio-box::before {

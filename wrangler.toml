@@ -1,9 +1,8 @@
 name = "tafy-demo"
 pages_build_output_dir = "./.vercel/output/static"
 
-#[vars]
-#API_KEY = "1234567asdf"
-#YARN_VERSION = "1"
+[vars]
+CLOUDFLARE_TEXT2IMAGE_MODEL = "@cf/bytedance/stable-diffusion-xl-lightning"
 
 #[[vectorize]]
 #binding = "VECTORIZE_INDEX" # available within your Worker on env.VECTORIZE_INDEX

@@ -17,9 +17,9 @@ export const Planner = ({
 }: PlannerProps) => {
   const [recipes, setRecipes] = useState<RecipeModel[]>([
     {
-      content: "This is the first recipe.",
+      content: "This is your first recipe - let's create it together...",
       backgroundImageDescription: "hello",
-      spokenNarration: "This is the first recipe. Welcome to our meal planner!",
+      spokenNarration: "Welcome to our meal planner! This will be your first recipe. Let's get started!",
     },
   ]);
   const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
@@ -80,8 +80,8 @@ export const Planner = ({
         style={{ backgroundColor: "#414247", overflow: "auto" }}
       >
         <div
-          className="aspect-ratio-box bg-white flex shadow-2xl"
-          style={{ margin: "5rem", maxHeight: "70vh" }}
+          className="aspect-ratio-box bg-white flex flex-grow shadow-2xl"
+          style={{ maxHeight: "200vh" }}
         >
           <Recipe recipe={currentRecipe} partialUpdateRecipe={updatecurrentRecipe} />
         </div>

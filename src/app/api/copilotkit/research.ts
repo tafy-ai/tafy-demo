@@ -141,15 +141,14 @@ async function write(state: {
   console.log("writing article");
   const response = await model().invoke([
     new SystemMessage(
-      `You are a professional food blogger. Your sole purpose is to write a well-written article about a 
-      food-related topic using a list of articles. Write 5 paragraphs in markdown.`.replace(
+      `You are a professional food blogger. Your sole purpose is to write a well-written article about a food-related topic using a list of articles. Write 5 paragraphs in markdown.`.replace(
         /\s+/g,
         " "
       )
     ),
     new HumanMessage(
       `Today's date is ${new Date().toLocaleDateString("en-US")}.
-      Your task is to write a critically acclaimed food article for me about the provided query or recipe based on the sources. 
+      Your task is to write a critically acclaimed food article for me about the provided query or recipe based on the sources, ensuring to follow these dietary preferences: """${process.env.DIETARY_PREFERENCES}""" 
       Here is a list of articles: """${state.agentState.searchResults}"""
       This is the topic: """${state.agentState.topic}"""
       Please return a well-written article based on the provided information.`.replace(

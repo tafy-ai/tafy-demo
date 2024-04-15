@@ -24,7 +24,7 @@ export const Recipe = (props: RecipeProps) => {
   useUpdateRecipe({ partialUpdateRecipe: props.partialUpdateRecipe });
 
   return (
-    <div className="w-full h-full v-full flex flex-row bg-white">
+    <div className="w-full h-full v-full flex flex-row bg-gray-950">
       <div className="flex-grow h-full v-full flex flex-col" style={{flex: "2"}}>
         <RecipeContent
           content={props.recipe.content}
@@ -50,7 +50,7 @@ function RecipeImage({ backgroundImage }: { backgroundImage: string }) {
       className="flex-grow h-full bg-slate-200"
       style={{
         flex: "1",
-        backgroundImage,
+        backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -92,12 +92,12 @@ interface RecipeContentProps {
 function RecipeContent({ content, onChange }: RecipeContentProps) {
   return (
     <textarea
-      className="flex-1 w-full text-gray-800 p-4 px-10 font-bold flex items-center line-clamp-6"
+      className="flex-1 w-full text-gray-800 bg-gray-100 p-4 px-10 font-bold flex items-center"
       style={{
         border: "none",
         outline: "none",
         resize: "none",
-        fontSize: "2vw",
+        fontSize: "1.5vw",
       }}
       value={content}
       placeholder="Recipe content..."

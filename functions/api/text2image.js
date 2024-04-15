@@ -20,7 +20,7 @@ export default {
       };
       // console.log('Inputs:', inputs);
 
-      const response = await ai.run('@cf/stabilityai/stable-diffusion-xl-base-1.0', inputs);
+      const response = await ai.run(env.CLOUDFLARE_TEXT2IMAGE_MODEL, inputs);
 
       return new Response(response, {
         headers: {'content-type': 'image/png'}

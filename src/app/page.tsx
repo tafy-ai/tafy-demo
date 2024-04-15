@@ -22,7 +22,7 @@ export default function AIPlanner() {
         labels={{
           title: "Planner Copilot",
           initial:
-            "Hi you! 👋 I can help you create a meal plan on any recipes.",
+            "Hi you! 👋 I can help you create a meal plan on any recipes. Let's start by editing this recipe.  What would you like to craft?",
         }}
         clickOutsideToClose={false}
       >
