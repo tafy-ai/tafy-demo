@@ -1,10 +1,15 @@
 "use client";
 
-
-export async function getBackgroundImage(text: string) {
-  const promise = await new Promise<void>((resolve) => {
-    
-  });
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  return image;
+export async function getBackgroundImage(description) {
+  try {
+    const response = await fetch(`/api/text2image?text=${encodeURIComponent(description)}`, { method: 'GET' });
+    if (!response.ok) {
+      throw new Error('Failed to fetch background image');
+    }
+    const imageBlob = await response.blob();
+    return URL.createObjectURL(imageBlob);
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    return '/default-image.png';  // fallback image in case of error
+  }
 }

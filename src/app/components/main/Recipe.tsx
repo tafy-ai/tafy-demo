@@ -4,6 +4,7 @@ import useUpdateRecipe from "../../actions/useUpdateRecipe";
 // import useUpdatePicture from "../../actions/useUpdatePicture";
 import { getBackgroundImage } from "../../utils/getBackgroundImage";
 import { RecipeModel } from "@/app/types";
+import { useEffect, useState } from "react";
 
 export interface RecipeProps {
   recipe: RecipeModel;
@@ -11,10 +12,11 @@ export interface RecipeProps {
 }
 
 export const Recipe = (props: RecipeProps) => {
-  const backgroundImage = getBackgroundImage(props.recipe.backgroundImageDescription);
-    // 'url("https://source.unsplash.com/featured/?' +
-    // encodeURIComponent(props.recipe.backgroundImageDescription) +
-    // '")';
+  const [backgroundImage, setBackgroundImage] = useState("");
+
+  useEffect(() => {
+    getBackgroundImage(props.recipe.backgroundImageDescription).then(setBackgroundImage);
+  }, [props.recipe.backgroundImageDescription]);
 
   /**
    * This action allows the Copilot to update the current recipe.

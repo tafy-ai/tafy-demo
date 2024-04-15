@@ -11,7 +11,14 @@ export default {
         return new Response('Query parameter "text" is required.', { status: 400 });
       }
 
-      const inputs = { prompt: promptText };
+      const inputs = {
+        prompt: promptText === 'hello'
+          ? 'Delicious food is the best way to make your day better.'
+          : promptText,
+        max_tokens: 100,
+        temperature: 0.5,
+      };
+      console.log('Inputs:', inputs);
 
       const response = await ai.run('@cf/stabilityai/stable-diffusion-xl-base-1.0', inputs);
 
