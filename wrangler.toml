@@ -1,5 +1,6 @@
 name = "tafy-demo"
 pages_build_output_dir = "./.vercel/output/static"
+compatibility_flags = [ "nodejs_compat" ]
 
 [vars]
 CLOUDFLARE_TEXT2IMAGE_MODEL = "@cf/bytedance/stable-diffusion-xl-lightning"
