@@ -1,13 +1,13 @@
 name = "tafy-demo"
-#pages_build_output_dir = "./dist"
+pages_build_output_dir = "./.vercel/output/static"
 
 #[vars]
 #API_KEY = "1234567asdf"
 #YARN_VERSION = "1"
 
-[[vectorize]]
-binding = "VECTORIZE_INDEX" # available within your Worker on env.VECTORIZE_INDEX
-index_name = "recipe_idx"
+#[[vectorize]]
+#binding = "VECTORIZE_INDEX" # available within your Worker on env.VECTORIZE_INDEX
+#index_name = "recipe_idx"
 
 [ai]
 binding = "AI"

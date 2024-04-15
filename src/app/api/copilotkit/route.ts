@@ -53,7 +53,7 @@ export async function POST(req: Request): Promise<Response> {
 
         return llm.stream(
           forwardedProps.messages,
-          { tools: forwardedProps.tools }
+          // { tools: forwardedProps.tools }
         );
       }),
     );
