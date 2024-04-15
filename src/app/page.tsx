@@ -20,9 +20,9 @@ export default function AIPlanner() {
         }
         defaultOpen={true}
         labels={{
-          title: "Planner Copilot",
+          title: "Your Meal Planner Copilot",
           initial:
-            "Hi you! 👋 I can help you create a meal plan on any recipes. Let's start by editing this recipe.  What would you like to craft?",
+            "Hi you! 👋 I can help you create a meal plan.  How would you like to start?",
         }}
         clickOutsideToClose={false}
       >

@@ -33,7 +33,7 @@ export async function GET(req: Request): Promise<Response> {
     return new Response(imageData, {
       headers: { 'Content-Type': 'image/png' }
     });
-  } catch (error) {
+  } catch (error: any) {
     return new Response(`Failed to process image: ${error.message}`, { status: 500 });
   }
 }

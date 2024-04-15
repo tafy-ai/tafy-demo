@@ -1,6 +1,6 @@
 "use client";
 
-export async function getBackgroundImage(description) {
+export async function getBackgroundImage(description: string) {
   try {
     const response = await fetch(`/api/text2image?text=${encodeURIComponent(description)}`, { method: 'GET' });
     if (!response.ok) {
