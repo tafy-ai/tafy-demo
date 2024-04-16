@@ -95,7 +95,7 @@ To learn more about Tafy, take a look at the following resources:
 
 - [Tafy Demo](https://tafy.recipe) - A live demo of Tafy!
 - [Tafy Signup (WIP)](https://tafy.io) - The home of what will become of the meal planning
-  web application if it gathers enough interest.
+  web application.
 - [GitHub](https://github.com/tafy-io) - Check out the Tafy organization GitHub repository.
 
 ### Credits
