@@ -29,8 +29,20 @@ the model that's used for image generation.
 npm run dev
 npx wrangler dev
 ```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### 4. Deploy the app
+
+1. [Fork the repo](https://github.com/tafy-io/tafy-demo/fork)
+1. `git clone <forked repo URI>`
+1. Update the `wrangler.toml` with your configuration.
+1. `cp env.local{.example,}`
+1. Setup your repo on Cloudflare pages, registering it as a NextJS app.
+1. Run `npx wrangler deploy functions/text2image.js` to deploy the worker.
+1. Configure your worker on cloudflare.
+1. Visit your site on cloudflare.
+
+For additional help, please [submit an issue on GitHub](https://github.com/tafy-io/tafy-demo/issues/new/choose).
 
 ## Learn More
 
