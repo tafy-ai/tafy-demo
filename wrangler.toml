@@ -6,7 +6,8 @@ compatibility_flags = [ "nodejs_compat" ]
 
 [vars]
 NODE_VERSION = "18"
-OPENAI_MODEL = "gpt-4-1106-preview"
+#OPENAI_MODEL = "gpt-4-1106-preview"
+OPENAI_MODEL = "gpt-4o"
 USE_CLOUDFLARE = "yes"
 CLOUDFLARE_AI_MODEL = "@hf/nousresearch/hermes-2-pro-mistral-7b"
 CLOUDFLARE_TEXT2IMAGE_MODEL = "@cf/bytedance/stable-diffusion-xl-lightning"
