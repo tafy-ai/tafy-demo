@@ -2,9 +2,9 @@ import { OpenAI } from "openai";
 
 export const runtime = "edge";
 
-const openai = new OpenAI(
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-);
+});
 
 export async function GET(req: Request): Promise<Response> {
   const url = new URL(req.url);
