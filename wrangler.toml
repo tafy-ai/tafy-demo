@@ -21,4 +21,3 @@ WORKER_URL = "https://tafy-demo.tafy.workers.dev"
 [ai]
 binding = "AI"
 
-
