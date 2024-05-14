@@ -73,20 +73,20 @@ For additional help, please [submit an issue on GitHub](https://github.com/tafy-
 
 #### Latest
 
-[x] Cloudflare Pages using NextJS and Workers AI for inference at the edge.
-[x] LangChain is used to allow for maximal extensiblity and calling
+- [x] Cloudflare Pages using NextJS and Workers AI for inference at the edge.
+- [x] LangChain is used to allow for maximal extensiblity and calling
   tools in text generation tasks.
-[x] CopilotKit used for integrating and chaining tools.
-[x] Online research using Tavily.
-[x] Automatic recipe image generation.
+- [x] CopilotKit used for integrating and chaining tools.
+- [x] Online research using Tavily.
+- [x] Automatic recipe image generation.
 
 #### Coming soon...
 
-[] Food Preferences LLM Tool - Don't like legumes? Never. Eat. Another. Bean.
-[] Calendar planner for meal plans, recipe storage, and fridge management
-[] Vectorize (Cloudflare) storage of recipes
-[] Food DB integrations + knowledge graph for better food pairings
-[] Grocery delivery network (requires critical mass)
+- [] Food Preferences LLM Tool - Don't like legumes? Never. Eat. Another. Bean.
+- [] Calendar planner for meal plans, recipe storage, and fridge management
+- [] Vectorize (Cloudflare) storage of recipes
+- [] Food DB integrations + knowledge graph for better food pairings
+- [] Grocery delivery network (requires critical mass)
 
 
 ### Links
@@ -95,7 +95,7 @@ To learn more about Tafy, take a look at the following resources:
 
 - [Tafy Demo](https://tafy.recipe) - A live demo of Tafy!
 - [Tafy Signup (WIP)](https://tafy.io) - The home of what will become of the meal planning
-  web application if it gathers enough interest.
+  web application.
 - [GitHub](https://github.com/tafy-io) - Check out the Tafy organization GitHub repository.
 
 ### Credits
