@@ -4,6 +4,7 @@ export const runtime = "edge";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
 });
 
 export async function GET(req: Request): Promise<Response> {
